@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <div class ="content">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s4">
+                        <input id="course_id" type="text" class="validate">
+                        <label for="course_id">Course id</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <select>
+                            <option value="" disabled selected>Category id</option>
+                            <option value="*" default>All</option>
+                            {% for item in data["category"] %}
+                            <option value="{{ item }}">{{ item }}</option>
+                            {% endfor %}
+                            <!-- <option value="2">Option 2</option>
+                            <option value="3">Option 3</option> -->
+                        </select>
+                    </div>
+                    <div class="input-field col s4">
+                        <select>
+                            <option value="" disabled selected>Instructor id</option>
+                            <option value="1" default>All</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s4">
+                        <select>
+                            <option value="" disabled selected>Status</option>
+                            <option value="1" default>Active</option>
+                            <option value="2">Option 2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                         <i class="material-icons right">send</i>
+                    </button>
+                </div>
+              
+            </form>
+          </div>
+        <!-- Add Course Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="course_id" type="text" class="validate">
+                                <label for="course_id">Course id</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="course_name" type="text" class="validate">
+                                <label for="course_name">Course name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select>
+                                    <option value="" disabled selected>Category id</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="course_duration" type="text" class="validate">
+                                <label for="course_duration">Course duration</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="max_batch_size" type="text" class="validate">
+                                <label for="max_batch_size">max batch size</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select>
+                                    <option value="" disabled selected>Instructor id</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="description" type="text" class="validate">
+                                <label for="description">description</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="preview_video" type="text" class="validate">
+                                <label for="preview_video">preview video</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="syllabus" type="text" class="validate">
+                                <label for="syllabus">syllabus </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select>
+                                    <option value="" disabled selected>Status</option>
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                </select>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="narration" type="text" class="validate">
+                                <label for="narration"> narration </label>
+                            </div>
+                        </div>
+                    </form>
+                  </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
+                <!-- post request -->
+            </div>
+        </div>
+        <!--End of Add Course Modal Structure  -->
+
+        <!-- Start add course button -->
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large black btn modal-trigger" href="#modal1" >
+                <i class="large material-icons">add</i>
+            </a>
+        </div>
+        <!-- End of add course button -->
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
+<script src="../static/js/admin_course.js"></script>
+</body>
+</html>
