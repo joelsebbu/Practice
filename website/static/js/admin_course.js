@@ -38,10 +38,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // main_submit.addEventListener("click",function(){
   //   alert("inside main_submit")
   // })
-  // function add(){
-  //   alert("lalo");
-  //   fetch('https://127.0.0.1:5000/admin/course/'+URLSearchParams({
-  //       "course_id":"1"
-  //     })
-  //   )
-  // }
+  function add(){
+
+    var course_id =document.getElementById('course_id').value
+    var category =document.getElementById('category').value
+    var status = document.getElementById('status').value
+    var instructor =document.getElementById('instructor').value
+    window.location.href="http://127.0.0.1:5000/admin/course"+URLSearchParams({
+      "course_id": course_id
+    })
+  }

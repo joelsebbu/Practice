@@ -7,7 +7,7 @@ views = Blueprint('views',__name__)
 @views.route('/admin/course')
 def admin_course_load():
     args =request.args
-    if not args.get('course_id') or not args.get('category') or not args.get('status') or not args.get('instructor'):
+    if not args.get('course_id') and not args.get('category') and not args.get('status') and not args.get('instructor'):
         data ={
             "category":["code","arts","buisness","crypto"],
             "status":["active","disabled"],
@@ -44,8 +44,6 @@ def admin_course_load():
             ]
         }
         return render_template('admin_course.html',data =data)
-    # elif args.get('category'):
-    #     return "hai"
     else:
         return "yeeha"
 
