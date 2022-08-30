@@ -22,3 +22,10 @@ def admin_enquiry_load():
     args =request.args
     data =logic.admin_enquiry_get(args)
     return render_template('admin_enquiry.html',data = data[1])
+
+@views.route('/admin/enquiry',methods=['POST'])
+def admin_enquiry_add():
+    form =request.form
+    data = logic.admin_enquiry_add(form)
+    # return render_template('admin_course.html',data =data[1])
+    return data

@@ -77,14 +77,13 @@
         {% for item in data["enquiry"] %}
         <div class="row">
             <div class="col s6 m3">
-                <div class="card">
-                    <div class="card-image">
-                        <img src={{item["img_url"]}}>
-                        <span class="card-title" style="color: black !important">{{ item["enquiry_id"] }}</span>
+                <div class="card white">
+                    <div class="card-content black-text">
+                        <span class="card-title" style="color: black !important">Enquiry id: {{ item["enquiry_id"] }}</span>
                         <a class="btn-floating halfway-fab waves-effect waves-light red btn modal-trigger "data-target={{item["enquiry_id"]}}><i class="material-icons">menu</i></a>
                     </div>
                     <div class="card-content">
-                        <p>enquiry id : {{ item["enquiry_id"] }}</p>
+                        <p>status : {{ item["status"] }}</p>
                         <p>user id: {{ item["user_id"] }}</p>
                     </div>
                 </div>
@@ -171,39 +170,15 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="add_enquiry_id" type="text" name = "add_enquiry_id"  class="validate">
-                                <label for="add_enquiry_id">enquiry id</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="add_enquiry_name" name = "add_enquiry"  type="text" class="validate">
-                                <label for="add_enquiry_name">enquiry name</label>
+                                <input id="add_enquiry_user_id" type="text" name = "add_enquiry_user_id"  class="validate">
+                                <label for="add_enquiry_user_id">user_id</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <select name = "add_enquiry_category" id ="add_enquiry_category">
-                                    <option value="" disabled selected>Category id</option>
-                                    {% for item in data["category"] %}
-                                     <option value="{{ item }}">{{ item }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="add_enquiry_duration" type="text" name = "add_enquiry_duration"  class="validate">
-                                <label for="add_enquiry_duration">enquiry duration</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="add_max_batch_size" type="text" class="validate">
-                                <label for="add_max_batch_size">max batch size</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <select name = "add_enquiry_instructor" id ="add_enquiry_instructor" >
-                                    <option value="" disabled selected>Instructor id</option>
-                                    {% for i in data["instructor"] %}
+                                <select name = "add_enquiry_course_id" id ="add_enquiry_course_id" >
+                                    <option value="" disabled selected>Course</option>
+                                    {% for i in data["course"] %}
                                         
                                     <option value="{{ i }}">{{ i }}</option>
                                         
@@ -214,21 +189,10 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="add_enquiry_description" type="text" class="validate">
-                                <label for="add_enquiry_description">description</label>
+                                <label for="add_enquiry_description">Enquiry</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="add_preview_video" type="text" class="validate">
-                                <label for="add_preview_video">preview video</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="add_enquiry_syllabus" type="text" class="validate">
-                                <label for="add_enquiry_syllabus">syllabus </label>
-                            </div>
-                        </div>
+                       
                         <div class="row">
                             <div class="input-field col s6">
                                 <select>
@@ -241,8 +205,8 @@
                                 </select>
                             </div>
                             <div class="input-field col s6">
-                                <input id="add_enquiry_narration" type="text" class="validate">
-                                <label for="add_enquiry_narration"> narration </label>
+                                <input id="add_enquiry_comment" type="text" class="validate">
+                                <label for="add_enquiry_comment"> comment </label>
                             </div>
                         </div>
                         <div class="modal-footer">

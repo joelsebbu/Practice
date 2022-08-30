@@ -3,7 +3,7 @@ import pyodbc
 import json
 
 def db():
-    connString = 'Driver={SQL Server};Server=DESKTOP-UDFFDCR\SQLEXPRESS;Database=learnify;Trusted_Connection=yes;'
+    connString = 'Driver={SQL Server};Server=DESKTOP-BMHPG59\SQLEXPRESS;Database=learnify;Trusted_Connection=yes;'
     conn = pyodbc.connect(connString)
     cursor = conn.cursor()
     cursor.execute(f"SELECT * FROM course")
@@ -139,7 +139,7 @@ def admin_enquiry_get(args):
     db=""
     enq_id =str(random.randrange(1, 1000))
     data=0,{"category":["code","arts","buisness","crypto"],
-            "status":["active","disabled"],
+            "status":["new","in_review","admitted","disabled"],
             "instructor":["1","2"],
             "course":["c++","java","py"],
             "enquiry":[
@@ -151,7 +151,7 @@ def admin_enquiry_get(args):
                     "instructor": 2,
                     "status":"new",
                     "comment":"adipoli",
-                    "enquiry":"how is this course"
+                    "enquiry":"how_is_this_course"
                 },
                 {
                     "img_url":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.aJAThVeZ_XpZ_nr6T7lPvQHaE7%26pid%3DApi&f=1",
@@ -161,8 +161,60 @@ def admin_enquiry_get(args):
                     "instructor": 5,
                     "status":"admitted",
                     "comment":"adipoli kollam",
-                    "enquiry":"I'll pay for it"
+                    "enquiry":"I'll_pay_for_it"
                 }
             ]
         }
+    enquiry_id =args.get('enquiry_id')
+    course =args.get('course')
+    category =args.get('category')
+    status = args.get('status')
+    instructor =args.get('instructor')
+    if not enquiry_id and not course and not category and not status and not instructor:
+        data = 1,{
+            "category":["code","arts","buisness","crypto"],
+            "status":["new","in_review","admitted","disabled"],
+            "instructor":["1","2"],
+            "course":["c++","java","py"],
+            "enquiry":[
+                {
+                    "img_url":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.aJAThVeZ_XpZ_nr6T7lPvQHaE7%26pid%3DApi&f=1",
+                    "course_id":"c++",
+                    "user_id":6,
+                    "enquiry_id":enq_id,
+                    "instructor": 2,
+                    "status":"new",
+                    "comment":"adipoli",
+                    "enquiry":"how_is_this_course"
+                },
+                {
+                    "img_url":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.aJAThVeZ_XpZ_nr6T7lPvQHaE7%26pid%3DApi&f=1",
+                    "course_id":"java",
+                    "user_id":6,
+                    "enquiry_id":"7",
+                    "instructor": 5,
+                    "status":"admitted",
+                    "comment":"adipoli kollam",
+                    "enquiry":"I'll_pay_for_it"
+                }
+            ]
+        }
+    elif enquiry_id:
+        if enq_id == '5':
+            pass
+        else:
+            pass
+    else:
+        if category:
+            if course:
+                
     return data
+    
+
+def admin_enquiry_add(form):
+    if form.get('type') == 'add':
+        
+        # add info and make a redirect to /admin/course
+        return "hola"
+    elif form.get('type') == 'update':
+        return "aloha"
