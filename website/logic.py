@@ -2,52 +2,44 @@ import random
 import pyodbc
 import json
 
-connString = 'Driver={SQL Server};Server=DESKTOP-UDFFDCR\SQLEXPRESS;Database=learnify;Trusted_Connection=yes;'
-conn = pyodbc.connect(connString)
-cursor = conn.cursor()
-cursor.execute(f"SELECT * FROM course")
-courses = []
+def db():
+    connString = 'Driver={SQL Server};Server=DESKTOP-UDFFDCR\SQLEXPRESS;Database=learnify;Trusted_Connection=yes;'
+    conn = pyodbc.connect(connString)
+    cursor = conn.cursor()
+    cursor.execute(f"SELECT * FROM course")
+    course = []
 
 
-for course in cursor:
-    courses.append({
-        "img_url":"thisistheimageurl",
-        "course_id": course[0],
-        "course_name":course[1],
-        "instructor": course[4],
-        "category_id": course[2],
-        "course_duration": course[3],
-        "max_batch_size": course[5],
-        "description":course[6],
-        "preview_video":course[7],
-        "syllabus":course[8],
-        "status":course[10],
-        "narration":course[11]
-    })
-
+    for i in cursor:
+        course.append({
+            "img_url":"thisistheimageurl",
+            "course_id": i[0],
+            "course_name":i[1],
+            "instructor": i[4],
+            "category_id": i[2],
+            "course_duration": i[3],
+            "max_batch_size": i[5],
+            "description":i[6],
+            "preview_video":i[7],
+            "syllabus":i[8],
+            "status":i[10],
+            "narration":i[11]
+        })
+    return {
+        "category":["code","arts","buisness","crypto"],
+        "status":["active","disabled"],
+        "instructor":["9","3"],
+        "course": course
+    }
 
 
 
 def admin_course_get(args):
-    
-    
-    
-
-    data=0, json.dumps({
-        "category":["code","arts","buisness","crypto"],
-        "status":["active","disabled"],
-        "instructor":["9","3"],
-        "course": courses
-    })
+    data=0, db()
 
     if not args.get('course_id') and not args.get('category') and not args.get('status') and not args.get('instructor'):
         #return all data
-        data =1,json.dumps({
-        "category":["code","arts","buisness","crypto"],
-        "status":["active","disabled"],
-        "instructor":["9","3"],
-        "course": courses
-    }) 
+        data =1,db()
 
     elif args.get('course_id'):
         if args.get('course_id') == "java":
