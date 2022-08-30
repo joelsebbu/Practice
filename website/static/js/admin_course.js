@@ -21,3 +21,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems);
   });
+
+  var add_course_submit = document.getElementById('add_course_submit');
+  add_course_submit.onclick(addEventListener,function(){
+    document.getElementById("add_course").submit();// Form submission
+
+  })
+
+  // var add_course_edit = document.getElementById('add_course_edit');
+  // add_course_edit.onclick(addEventListener,function(){
+  //   document.getElementById("update_course").disabled;// Form submission
+
+  // })

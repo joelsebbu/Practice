@@ -65,17 +65,114 @@
                     <div class="card-image">
                         <img src={{item["img_url"]}}>
                         <span class="card-title" style="color: black !important">{{ item["course_name"] }}</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">menu</i></a>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red btn modal-trigger "data-target={{item["course_id"]}}><i class="material-icons">menu</i></a>
                     </div>
                     <div class="card-content">
-                        <p>{{ item["course_id"] }}</p>
-                        <p>{{ item["instructor"] }}</p>
+                        <p>course id : {{ item["course_id"] }}</p>
+                        <p>instructor id: {{ item["instructor"] }}</p>
                     </div>
                 </div>
             </div>
-        </div    
+        </div>
+        <!-- card modal -->
+        <div id={{item["course_id"]}} class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <form method ="put" action = "admin/course" id = "update_course"class="col s12">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="update_course_id" placeholder={{item["course_id"]}} type="text" class="validate">
+                                <label for="update_course_id">Course id</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="update_course_name" placeholder={{item["course_name"]}} type="text" class="validate">
+                                <label for="update_course_name">Course name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select>
+                                    <option value={{item["category_id"]}} selected>{{item["category_id"]}}</option>
+                                    {% for i in data["category"] %}
+                                        {% if i != category_id %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <label>category id</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input id="update_course_duration" placeholder={{item["course_duration"]}} type="text" class="validate">
+                                <label for="update_course_duration">Course duration</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="update_max_batch_size" placeholder={{item["max_batch_size"]}} type="text" class="validate">
+                                <label for="update_max_batch_size">max batch size</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select>
+                                    <option value={{item["instructor"]}}  selected>Instructor id</option>
+                                    {% for i in data["instructor"] %}
+                                        {% if (i) != (instructor) %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <label>instructor</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="update_description" placeholder={{item["description"]}} type="text" class="validate">
+                                <label for="update_description">description</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="update_preview_video" placeholder={{item["preview_video"]}} type="text" class="validate">
+                                <label for="update_preview_video">preview video</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="update_syllabus" placeholder={{item["syllabus"]}} type="text" class="validate">
+                                <label for="update_syllabus">syllabus </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <select>
+                                    <option value={{item["status"]}} disabled selected>{{item["status"]}}</option>
+                                    {% for i in data["status"] %}
+                                        {% if (i) != (status) %}
+                                        <option value="{{ i }}">{{ i }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <label>status</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input id="update_narration" placeholder={{item["narration"]}} type="text" class="validate">
+                                <label for="update_narration"> narration </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            
+                            <input type="submit" value="submit" class = "btn waves-effect waves-light">
+                            <!-- post request -->
+                        </div>
+                    </form>
+                  </div>
+            </div>
+           
+        </div>
+        <!-- end of card modal -->
         {% endfor %}
-        >    
+            
           
 
           <!-- end of cards to display -->
@@ -83,7 +180,7 @@
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <div class="row">
-                    <form action = "http://127.0.0.1:5000/admin/course" method = "POST" class="col s12">
+                    <form method ="post" action = "admin/course" id = "add_course"class="col s12">
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="add_course_id" type="text" class="validate">
@@ -156,7 +253,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
+                            <a href="#!" id = "add_course_submit"class="modal-close waves-effect waves-green btn-flat">Submit</a>
                             <!-- post request -->
                         </div>
                     </form>
