@@ -207,7 +207,53 @@ def admin_enquiry_get(args):
     else:
         if category:
             if course:
+                if status:
+                    if instructor:
+                        pass
+                    else:
+                        pass
+                else:
+                    if instructor:
+                        pass
+                    else:
+                        pass
+            else:
+                if status:
+                    if instructor:
+                        pass
+                    else:
+                        pass
+                else:
+                    if instructor:
+                        pass
+                    else:
+                        pass
+        else:
+            if course:
+                if status:
+                    if instructor:
+                        pass
+                    else:
+                        pass
+                else:
+                    if instructor:
+                        pass
+                    else:
+                        pass
+            else:
+                if status:
+                    if instructor:
+                        pass
+                    else:
+                        pass
+                else:
+                    if instructor:
+                        pass
+                    else:
+                        pass
+
                 
+
     return data
     
 
