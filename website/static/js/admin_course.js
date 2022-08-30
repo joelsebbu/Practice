@@ -22,15 +22,26 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FormSelect.init(elems);
   });
 
-  var add_course_submit = document.getElementById('add_course_submit');
-  add_course_submit.onclick(addEventListener,function(){
-    document.getElementById('add_course_id') =4;
-    document.getElementById("add_course").submit();// Form submission
+  // var add_course_submit = document.getElementById('add_course_submit');
+  // add_course_submit.onclick(addEventListener,function(){
+  //   document.getElementById('add_course_id') =4;
+  //   document.getElementById("add_course").submit();// Form submission
 
-  })
+  // })
 
   // var add_course_edit = document.getElementById('add_course_edit');
   // add_course_edit.onclick(addEventListener,function(){
   //   document.getElementById("update_course").disabled;// Form submission
 
   // })
+  // var main_submit =document.getElementById('main_submit');
+  // main_submit.addEventListener("click",function(){
+  //   alert("inside main_submit")
+  // })
+  // function add(){
+  //   alert("lalo");
+  //   fetch('https://127.0.0.1:5000/admin/course/'+URLSearchParams({
+  //       "course_id":"1"
+  //     })
+  //   )
+  // }
