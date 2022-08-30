@@ -78,7 +78,11 @@
         <div id={{item["course_id"]}} class="modal">
             <div class="modal-content">
                 <div class="row">
-                    <form method ="put" action = "/admin/course" id = "update_course"class="col s12">
+                    <form method ="post" action = "/admin/course" id = "update_course"class="col s12">
+                        <div class ="row">
+                            <!-- <input type="text" id ="type" name = "type" value="update" style="color:white" > -->
+                            <textarea name="type" id="type" class="materialize-textarea" disabled>update</textarea>
+                        </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="update_course_id" placeholder={{item["course_id"]}} type="text" class="validate">
@@ -181,6 +185,9 @@
             <div class="modal-content">
                 <div class="row">
                     <form method ="post" action = "/admin/course" id = "add_course"class="col s12">
+                        <div class = "row">
+                            <input type="text" name="type" value="add" id ="type" style="color:white;">
+                        </div>
                         <div class="row">
                             <div class="input-field col s6">
                                 <input id="add_course_id" type="text" class="validate">
@@ -253,7 +260,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" value="submit" class = "btn waves-effect waves-light">
+                            <input type="submit" value="submit" id= "add_course_submit"class = "btn waves-effect waves-light">
                             <!-- post request -->
                         </div>
                     </form>

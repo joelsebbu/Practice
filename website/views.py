@@ -1,5 +1,6 @@
-from urllib import request
-from flask import Blueprint,render_template
+from ctypes.wintypes import HLOCAL
+
+from flask import Blueprint,render_template,request
 
 views = Blueprint('views',__name__)
 
@@ -44,8 +45,8 @@ def admin_course_load():
 
 @views.route('/admin/course',methods=['POST'])
 def admin_course_add():
-    return "hola"
-
-@views.route('/admin/course',methods=['PUT'])
-def admin_course_update():
-    return "hola"
+    print(request.form.get('type'))
+    if request.form.get('type') == 'add':
+        return "hola"
+    elif request.form.get('type') == 'update':
+        return "aloha"
