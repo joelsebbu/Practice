@@ -9,14 +9,16 @@ views = Blueprint('views',__name__)
 def admin_course_load():
     args =request.args
     data =logic.admin_course_get(args)
-    if data[0]==1:
-        return render_template('admin_course.html',data =data[1])
-    else:
-        return "blah"
+    return render_template('admin_course.html',data =data[1])
 
 @views.route('/admin/course',methods=['POST'])
 def admin_course_add():
     form =request.form
     data = logic.admin_course_add(form)
-    return data
+    return render_template('admin_course.html',data =data[1])
 
+@views.route('/admin/enquiry')
+def admin_enquiry_load():
+    args =request.args
+    data =logic.admin_enquiry_get(args)
+    return render_template('admin_enquiry.html',data = data[1])

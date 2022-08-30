@@ -12,15 +12,15 @@
     <div class ="content">
         <!-- main content -->
         <div class="row">
-            <form action="/admin/course" method ="get"class="col s12">
+            <form action="/admin/enquiry" method ="get"class="col s12">
                 <div class="row">
                     <div class="input-field col s4">
-                        <input id="course_id" name="course_id" type="text" class="validate">
-                        <label for="course_id">Course id</label>
+                        <input id="enquiry_id" name="enquiry_id" type="text" class="validate">
+                        <label for="enquiry_id">enquiry id</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s4">
+                    <div class="input-field col s3">
                         <select id="category" name ="category">
                             <option value="" disabled selected>Category id</option>
                             <option value="*" default>All</option>
@@ -31,8 +31,9 @@
                             <option value="3">Option 3</option> -->
                         </select>
                     </div>
-                    <div class="input-field col s4">
+                    <div class="input-field col s3">
                         <select id="instructor" name ="instructor">
+                            <option value="" disabled selected>Instructor</option>
                             <option value="All" default>All</option>
                             {% for i in data["instructor"] %}
                                         
@@ -41,11 +42,22 @@
                                     {% endfor %}
                         </select>
                     </div>
-                    <div class="input-field col s4">
+                    <div class="input-field col s3">
                         <select id="status" name ="status">
                             <option value="" disabled selected>Status</option>
                             <option value="All" default>All</option>
                             {% for i in data["status"] %}
+                                
+                                    <option value="{{ i }}">{{ i }}</option>
+                                        
+                                    {% endfor %}
+                        </select>
+                    </div>
+                    <div class="input-field col s3">
+                        <select id="course" name ="course">
+                            <option value="" disabled selected>course</option>
+                            <option value="All" default>All</option>
+                            {% for i in data["course"] %}
                                 
                                     <option value="{{ i }}">{{ i }}</option>
                                         
@@ -62,93 +74,57 @@
          <!-- end of main content -->
 
         <!-- cards to display -->
-        {% for item in data["course"] %}
+        {% for item in data["enquiry"] %}
         <div class="row">
             <div class="col s6 m3">
                 <div class="card">
                     <div class="card-image">
                         <img src={{item["img_url"]}}>
-                        <span class="card-title" style="color: black !important">{{ item["course_name"] }}</span>
-                        <a class="btn-floating halfway-fab waves-effect waves-light red btn modal-trigger "data-target={{item["course_id"]}}><i class="material-icons">menu</i></a>
+                        <span class="card-title" style="color: black !important">{{ item["enquiry_id"] }}</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red btn modal-trigger "data-target={{item["enquiry_id"]}}><i class="material-icons">menu</i></a>
                     </div>
                     <div class="card-content">
-                        <p>course id : {{ item["course_id"] }}</p>
-                        <p>instructor id: {{ item["instructor"] }}</p>
+                        <p>enquiry id : {{ item["enquiry_id"] }}</p>
+                        <p>user id: {{ item["user_id"] }}</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- card modal -->
-        <div id={{item["course_id"]}} class="modal">
+        <div id={{item["enquiry_id"]}} class="modal">
             <div class="modal-content">
                 <div class="row">
-                    <form method ="post" action = "/admin/course" id = "update_course"class="col s12">
+                    <form method ="post" action = "/admin/enquiry" id = "update_enquiry"class="col s12">
                         <div class ="row">
                             <input type="text" id ="type" name = "type" value="update" style="color:white" >
                             <!-- <textarea name="type" id="type" class="materialize-textarea" disabled>update</textarea> -->
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="update_course_id" placeholder={{item["course_id"]}} type="text" class="validate">
-                                <label for="update_course_id">Course id</label>
+                                <input id="update_enquiry_id" placeholder={{item["enquiry_id"]}} type="text" class="validate" disabled>
+                                <label for="update_enquiry_id">enquiry id</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="update_course_name" placeholder={{item["course_name"]}} type="text" class="validate">
-                                <label for="update_course_name">Course name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <select>
-                                    <option value={{item["category_id"]}} selected>{{item["category_id"]}}</option>
-                                    {% for i in data["category"] %}
-                                        {% if i != category_id %}
-                                        <option value="{{ i }}">{{ i }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
-                                <label>category id</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input id="update_course_duration" placeholder={{item["course_duration"]}} type="text" class="validate">
-                                <label for="update_course_duration">Course duration</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input id="update_max_batch_size" placeholder={{item["max_batch_size"]}} type="text" class="validate">
-                                <label for="update_max_batch_size">max batch size</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <select>
-                                    <option value={{item["instructor"]}}  selected>{{item["instructor"]}}</option>
-                                    {% for i in data["instructor"] %}
-                                        {% if (i) != (instructor) %}
-                                        <option value="{{ i }}">{{ i }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
-                                <label>instructor</label>
+                                <input id="update_enquiry_user_id" placeholder={{item["user_id"]}} type="text" class="validate"disabled>
+                                <label for="update_enquiry_user_id">user id</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="update_description" placeholder={{item["description"]}} type="text" class="validate">
-                                <label for="update_description">description</label>
+                                <input id="course_id" placeholder={{item["course_id"]}} type="text" class="validate"disabled>
+                                <label for="course_id">course_id</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="update_preview_video" placeholder={{item["preview_video"]}} type="text" class="validate">
-                                <label for="update_preview_video">preview video</label>
+                                <input id="instructor" placeholder={{item["instructor"]}} type="text" class="validate"disabled>
+                                <label for="instructor">instructor</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="update_syllabus" placeholder={{item["syllabus"]}} type="text" class="validate">
-                                <label for="update_syllabus">syllabus </label>
+                                <input id="update_comment" placeholder={{item["comment"]}} type="text" class="validate">
+                                <label for="update_comment">comment </label>
                             </div>
                         </div>
                         <div class="row">
@@ -164,8 +140,8 @@
                                 <label>status</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="update_narration" placeholder={{item["narration"]}} type="text" class="validate">
-                                <label for="update_narration"> narration </label>
+                                <input id="enquiry" placeholder={{item["enquiry"]}} type="text" class="validate"disabled>
+                                <label for="enquiry"> enquiry </label>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -184,28 +160,28 @@
           
 
           <!-- end of cards to display -->
-        <!-- Add Course Modal Structure -->
+        <!-- Add enquiry Modal Structure -->
         <div id="modal1" class="modal">
             <div class="modal-content">
                 <div class="row">
                     
-                    <form name = "add_course" method ="post" action = "/admin/course" id = "add_course"class="col s12">
+                    <form name = "add_enquiry" method ="post" action = "/admin/enquiry" id = "add_enquiry"class="col s12">
                         <div class = "row">
                             <input type="text" name="type" value="add" id ="type" style="color:white;">
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="add_course_id" type="text" name = "add_course_id"  class="validate">
-                                <label for="add_course_id">Course id</label>
+                                <input id="add_enquiry_id" type="text" name = "add_enquiry_id"  class="validate">
+                                <label for="add_enquiry_id">enquiry id</label>
                             </div>
                             <div class="input-field col s6">
-                                <input id="add_course_name" name = "add_course"  type="text" class="validate">
-                                <label for="add_course_name">Course name</label>
+                                <input id="add_enquiry_name" name = "add_enquiry"  type="text" class="validate">
+                                <label for="add_enquiry_name">enquiry name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <select name = "add_course_category" id ="add_course_category">
+                                <select name = "add_enquiry_category" id ="add_enquiry_category">
                                     <option value="" disabled selected>Category id</option>
                                     {% for item in data["category"] %}
                                      <option value="{{ item }}">{{ item }}</option>
@@ -215,8 +191,8 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input id="add_course_duration" type="text" name = "add_course_duration"  class="validate">
-                                <label for="add_course_duration">Course duration</label>
+                                <input id="add_enquiry_duration" type="text" name = "add_enquiry_duration"  class="validate">
+                                <label for="add_enquiry_duration">enquiry duration</label>
                             </div>
                             <div class="input-field col s6">
                                 <input id="add_max_batch_size" type="text" class="validate">
@@ -225,7 +201,7 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <select name = "add_course_instructor" id ="add_course_instructor" >
+                                <select name = "add_enquiry_instructor" id ="add_enquiry_instructor" >
                                     <option value="" disabled selected>Instructor id</option>
                                     {% for i in data["instructor"] %}
                                         
@@ -237,8 +213,8 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="add_course_description" type="text" class="validate">
-                                <label for="add_course_description">description</label>
+                                <input id="add_enquiry_description" type="text" class="validate">
+                                <label for="add_enquiry_description">description</label>
                             </div>
                         </div>
                         <div class="row">
@@ -249,8 +225,8 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="add_course_syllabus" type="text" class="validate">
-                                <label for="add_course_syllabus">syllabus </label>
+                                <input id="add_enquiry_syllabus" type="text" class="validate">
+                                <label for="add_enquiry_syllabus">syllabus </label>
                             </div>
                         </div>
                         <div class="row">
@@ -265,12 +241,12 @@
                                 </select>
                             </div>
                             <div class="input-field col s6">
-                                <input id="add_course_narration" type="text" class="validate">
-                                <label for="add_course_narration"> narration </label>
+                                <input id="add_enquiry_narration" type="text" class="validate">
+                                <label for="add_enquiry_narration"> narration </label>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="submit" value="submit" name="add_course_submit" onclick="add()" id= "add_course_submit"class = "btn waves-effect waves-light">
+                            <input type="submit" value="submit" name="add_enquiry_submit" onclick="add()" id= "add_enquiry_submit"class = "btn waves-effect waves-light">
                             <!-- post request -->
                         </div>
                     </form>
@@ -278,21 +254,21 @@
             </div>
            
         </div>
-        <!--End of Add Course Modal Structure  -->
+        <!--End of Add enquiry Modal Structure  -->
 
-        <!-- Start add course button -->
+        <!-- Start add enquiry button -->
         <div class="fixed-action-btn">
             <a class="btn-floating btn-large black btn modal-trigger" href="#modal1" >
                 <i class="large material-icons">add</i>
             </a>
         </div>
-        <!-- End of add course button -->
+        <!-- End of add enquiry button -->
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script
   src="https://code.jquery.com/jquery-3.6.1.js"
   integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
   crossorigin="anonymous"></script>
-<script src="../static/js/admin_course.js"></script>
+<script src="../static/js/admin_enquiry.js"></script>
 </body>
 </html>

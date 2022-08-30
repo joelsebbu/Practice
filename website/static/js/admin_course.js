@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // main_submit.addEventListener("click",function(){
   //   alert("inside main_submit")
   // })
-  function add(){
+  function main_(){
 
     var course_id =document.getElementById('course_id').value
     var category =document.getElementById('category').value
@@ -48,3 +48,4 @@ document.addEventListener('DOMContentLoaded', function() {
       "course_id": course_id
     })
   }
+
