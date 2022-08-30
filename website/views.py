@@ -44,4 +44,8 @@ def admin_course_load():
 
 @views.route('/admin/course',methods=['POST'])
 def admin_course_add():
-    pass
+    return "hola"
+
+@views.route('/admin/course',methods=['PUT'])
+def admin_course_update():
+    return "hola"
